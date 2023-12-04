@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
     const navigate = useNavigate();
-    const handleNavigate = () => {
+    const handleNavigate = useCallback(() => {
         // navigate 함수를 사용하여 "/board"로 이동
         navigate('/board');
-    };
+    }, [navigate]);
 
     return (
         <div>

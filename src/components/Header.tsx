@@ -25,7 +25,6 @@ function Header(args: argsInter) {
     const [isOpen, setIsOpen] = useState(false);
     //reactstrap나 일부 라이브러리는 자체적으로 라우팅 기능을 가지지 않고, 간단한 HTML 속성만을 사용하여 페이지 간 이동을 수행합니다.
     //이 경우에는 해당 라이브러리의 컴포넌트에서 react-router-dom의 라우팅과 관련된 속성을 직접 지원하지 않을 수 있습니다. 때문에 router에서 basename이 안먹혔고 이렇게 선언해서 해결했다
-    const basePath = process.env.PUBLIC_URL || '/';
     const toggle = () => setIsOpen(!isOpen);
 
     return (

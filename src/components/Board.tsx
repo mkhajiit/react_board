@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Button } from 'reactstrap';
 
 interface ToDosInter {
@@ -11,10 +11,16 @@ function Board() {
     const [toDo, setToDo] = useState<string>('');
     const [desc, setDesc] = useState<string>('');
     const [toDos, setToDos] = useState<ToDosInter[]>([]);
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) =>
-        setToDo((current) => (current = event.target.value));
-    const onChangeDesc = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
-        setDesc((current) => (current = event.target.value));
+    const onChange = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) =>
+            setToDo((current) => (current = event.target.value)),
+        [setToDo]
+    );
+    const onChangeDesc = useCallback(
+        (event: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setDesc((current) => (current = event.target.value)),
+        [setDesc]
+    );
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (toDo === '' && desc === '') {
@@ -24,6 +30,7 @@ function Board() {
             return (currentObj = [...currentObj, { id: toDos.length, goal: toDo, desc: desc }]);
         });
         setToDo('');
+        setDesc('');
     };
     const deleteToDos = (itemId: number) => {
         setToDos((currentToDos) => currentToDos.filter((item) => item.id !== itemId));
