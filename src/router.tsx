@@ -3,6 +3,7 @@ import App from './App';
 import Home from './components/Home';
 import Board from './components/Board';
 import NotFound from './components/NotFound';
+import DynamicList from './components/test';
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
             {
                 path: 'board',
                 element: <Board />,
+            },
+            {
+                path: 'test',
+                element: <DynamicList />,
             },
         ],
         errorElement: <NotFound />,
